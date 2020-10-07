@@ -1,0 +1,415 @@
+{
+  "intents": [
+    {
+      "intent": "Chicken_Biryani",
+      "examples": [
+        {
+          "text": "I want special chicken biryani"
+        },
+        {
+          "text": "My order is chicken dum biryani"
+        },
+        {
+          "text": "Place oreder for chiken legs biryani"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Get Started"
+        },
+        {
+          "text": "Hai"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Mushroom",
+      "examples": [
+        {
+          "text": "I need spicy Mushroom Biryani"
+        },
+        {
+          "text": "I want Mushroom fried rice"
+        },
+        {
+          "text": "Place an order for Mushroom biryani"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Mutton_Biryani",
+      "examples": [
+        {
+          "text": "Can I know more details about Mutton Biryani"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Services",
+      "examples": [
+        {
+          "text": "I want to know the different services provided by A1 Hotel"
+        },
+        {
+          "text": "What is the special today !!!!"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Vegetable_Biryani",
+      "examples": [
+        {
+          "text": "I want Vegetable biryani"
+        },
+        {
+          "text": "One plate Vegetable Biryani"
+        },
+        {
+          "text": "Order vegetable rice"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Dinner",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chicken",
+          "synonyms": [
+            "broiler hen",
+            "Chicken",
+            "hen"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Mutton",
+          "synonyms": [
+            "Goat"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-currency",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "title": "Enter Ur Choice",
+            "options": [
+              {
+                "label": "Mutton",
+                "value": {
+                  "input": {
+                    "text": ""
+                  }
+                }
+              },
+              {
+                "label": "Mushroom",
+                "value": {
+                  "input": {
+                    "text": ""
+                  }
+                }
+              },
+              {
+                "label": "Vegetable",
+                "value": {
+                  "input": {
+                    "text": ""
+                  }
+                }
+              },
+              {
+                "label": "chicken",
+                "value": {
+                  "input": {
+                    "text": ""
+                  }
+                }
+              },
+              {
+                "label": "Nothing Else",
+                "value": {
+                  "input": {
+                    "text": ""
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1601994315184"
+      },
+      "conditions": "anything_else || #Chicken_Biryani || #Mushroom",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_7_1601995347240",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Service",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We offer delicious food services like : 1) Chicken Dum Biryani, 2) Mutton Dum Biryani,  3) Vegetable Rice, 4) Mushroom Rice..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "What do you want to order ???????"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Services",
+      "dialog_node": "node_2_1601994315184",
+      "previous_sibling": "node_8_1601994002668"
+    },
+    {
+      "type": "standard",
+      "title": "Chicken_biryani",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Excellent  Choice.. Today is 20% off....Thanks for Ordering..Ur delivery os on the way.."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Anything else"
+      },
+      "conditions": "#Chicken_Biryani",
+      "dialog_node": "node_6_1601998565727",
+      "previous_sibling": "node_8_1601995152552"
+    },
+    {
+      "type": "standard",
+      "title": "Mushroom",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks for Choosing Spicy Mushroom Biryani..Your Oder is placed and delivered with in 5 Min.."
+              },
+              {
+                "text": "Have a Nice Day..."
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Anything else"
+      },
+      "conditions": "#Mushroom",
+      "dialog_node": "node_7_1601995347240",
+      "previous_sibling": "node_6_1601998565727"
+    },
+    {
+      "type": "standard",
+      "title": "Greet",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello.... This is A1 Hotel Chat Bot powered by IBM watson...Welcome to A1 Hotel...How can I Help You ???"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Greetings",
+      "dialog_node": "node_8_1601994002668",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "vegetable_biryani",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks for choosing Vegetable biryani"
+              },
+              {
+                "text": "Your order is placed for 1 packet and price is rs 100/- Your order is placed.."
+              },
+              {
+                "text": "Thanks for placing ur Order.. Have a Nice day...."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Vegetable_Biryani",
+      "dialog_node": "node_8_1601995152552",
+      "previous_sibling": "node_9_1601994613772"
+    },
+    {
+      "type": "standard",
+      "title": "Mutton_Dum_Biryani",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks for choosing Mutton Dum Biryani..Your Order is placed for 1 quantity and price is Rs 300/- Only..Your Order will be delivered in 5 Min.."
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Have a nice day"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Mutton_Biryani || $mutton || $mutton biryani",
+      "dialog_node": "node_9_1601994613772",
+      "previous_sibling": "node_2_1601994315184"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
